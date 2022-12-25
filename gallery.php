@@ -23,7 +23,7 @@ include "sympDetail.php";
         <img src="img/logo/naac.png" alt="NAAC logo">
     </div>
     
-    <h1 style="margin-top: 80px;"><a href="https://www.erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
+    <h1 style="margin-top: 80px;"><a href="https://erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
             <h3>(An Autonomous Institution)</h3>
         </a></h1>
 

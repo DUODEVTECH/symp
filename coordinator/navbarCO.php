@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../sympDetail.php";
 ?>
 <input type="checkbox" id="check">
 <label for="check" class="checkbtn open"><i class="fa-solid fa-sm fa-bars"></i></label>
@@ -23,6 +24,14 @@ session_start();
             <span class="text">STUDENTS</span>
         </a>
     </li>
+    <?php if($modeOfRegistration == 'ONSPOT'){ ?>
+        <li class="list payment">
+            <a href="paymentList.php">
+                <span class="icon"><i class="fa-solid fa-sm fa-credit-card"></i></span>
+                <span class="text" style="font-size: 12px;">PAYMENT LIST</span>
+            </a>
+        </li>
+    <?php } ?>
     <li class="list absent">
         <a href="absent.php">
             <span class="icon"><i class="fa-solid fa-sm fa-user-check"></i></i></span>

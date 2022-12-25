@@ -48,7 +48,7 @@ if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['pr
         </div>
 
         <h1 style="margin-top: 80px;">
-            <a href="https://www.erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
+            <a href="https://erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
                 <h3>(An Autonomous Institution)</h3>
             </a>
         </h1><br>
