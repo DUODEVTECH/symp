@@ -1849,6 +1849,13 @@ span.note button a {
 	display: flex;
 	flex-direction: column;
 	height: auto;
+	margin-bottom: 60px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scrollbar-width: thin;
+}
+.navigation-admin ul::-webkit-scrollbar {
+	width: 2px;
 }
 .navigation-admin ul li {
 	position: relative;
@@ -1897,6 +1904,7 @@ span.note button a {
 .navigation-admin ul li.logout {
 	position: absolute;
 	bottom: 5px;
+	background-color: black;
 }
 .navigation-admin ul li a .text:hover {
 	letter-spacing: 3px;
@@ -1911,6 +1919,47 @@ span.note button a {
 	.navigation-admin ul li a {
 		font-size: 0.7rem;
 	}
+}
+
+/* Toggle Button */
+.toggle{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 20px;
+}
+.toggle input{
+	display: none;
+}
+.toggle span{
+	margin: 0 10px;
+}
+.toggle label{
+	position: relative;
+	width: 60px;
+	height: 30px;
+	background-color: var(--bgclr);
+	border-radius: 50px;
+	cursor: pointer;
+	transition: 0.5s;
+	border: 3px solid var(--txtclr);
+}
+.toggle label::after{
+	content: "";
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background-color: var(--btnclr);
+	border-radius: 25px;
+	left: 0;
+	top: -0.4px;
+	transition: 0.5s;
+}
+.toggle input:checked ~ label{
+	background-color: var(--txtclr);
+}
+.toggle input:checked ~ label::after{
+	left: 30px;
 }
 
 /* Input group design */
@@ -1948,7 +1997,10 @@ select:focus {
 textarea:focus {
 	border: 2px solid teal;
 }
-button:hover {
+a{
+	color: var(--txtclr);
+}
+button:hover , button:hover a{
 	background: var(--hover);
 	color: var(--txtHov);
 	letter-spacing: 3px;

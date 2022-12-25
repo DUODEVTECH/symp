@@ -56,8 +56,8 @@ $date = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DATE,STATUS FROM event WH
     <marquee behavior="scroll" direction="left" id="recent-registrations">
         <?php 
             $recentRegistration = mysqli_query( $conn, "SELECT NAME, COLLEGE FROM users ORDER BY REG_TIME DESC LIMIT 3");
-            while($recentReigistrationRow = mysqli_fetch_assoc($recentRegistration)){
-                echo "<span>".$recentRegistrationRow['NAME']." from ".$recentRegistrationRow['COLLEGE']." is registered for symposium.</span>";
+            while($recentRegistrationRow = mysqli_fetch_assoc($recentRegistration)){
+                echo "<span>".$recentRegistrationRow['NAME']." from ".$recentRegistrationRow['COLLEGE']." is registered for symposium.&emsp;</span>";
             }
         ?>
     </marquee>
@@ -66,7 +66,7 @@ $date = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DATE,STATUS FROM event WH
         <img src="img/logo/naac.png" alt="NAAC logo">
     </div>
     
-    <h1 style="margin-top: 80px;"><a href="https://www.erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
+    <h1 style="margin-top: 80px;"><a href="https://erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
             <h3>(An Autonomous Institution)</h3>
         </a></h1>
     <nav class="nav-index">
@@ -162,10 +162,14 @@ $date = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DATE,STATUS FROM event WH
         <section class="gallery">
             <h3>OUR GALLERY</h3>
             <div class="photo-gallery">
-                <img src="img/gallery/1.jpg" alt="Gallery Image">
-                <img src="img/gallery/2.jpg" alt="Gallery Image">
-                <img src="img/gallery/3.jpg" alt="Gallery Image">
-                <img src="img/gallery/4.jpg" alt="Gallery Image">
+                <?php 
+                    $fils = glob("img/gallery/*.*");
+                    $count = count($fils)>=4?4:count($fils);
+                    for($i=0; $i<$count; $i++){
+                        $img = $fils[$i];
+                        echo "<img src='$img' alt='gallery image'>";
+                    }
+                ?>
             </div>
             <br>
             <div class="form">
@@ -251,6 +255,7 @@ $date = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DATE,STATUS FROM event WH
                 <input type="email" placeholder="E-mail" name="email" id="email2" onchange="validate(); validate_register(this);" required><br>
                 <input type="phone" placeholder="Phone Number" name="phone" onchange="validate_register(this)" onkeydown="validate_phone(this)" required><br>
                 <input type="text" placeholder="College Name" name="clg" onchange="validate_register(this)" required><br>
+                
                 <select name="deg" id="deg">
                     <option value="-1">Select Degree</option>
                     <option value="BE">BE</option>

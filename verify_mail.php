@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <h1 style="margin-top: 80px;"><a href="https://www.erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
+    <h1 style="margin-top: 80px;"><a href="https://erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
             <h3>(An Autonomous Institution)</h3>
         </a></h1><br>
     <h2 class="logo"><?php echo $sympEmail; ?> <span><?php echo $sympYear; ?></span></h2><br>

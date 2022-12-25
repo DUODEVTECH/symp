@@ -18,6 +18,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'DELETE') {
 $sql = "SELECT * FROM users ORDER BY ID ASC";
 $result = mysqli_query($conn, $sql);
 
+$checked = $modeOfRegistration == 'ONLINE' ? '' : 'checked';
+
 if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['privilage']) && $_SESSION['privilage'] == "admin") {
 ?>
 	<!DOCTYPE html>
@@ -43,7 +45,7 @@ if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['pr
 				<img src="../img/logo/naac.png" alt="NAAC logo">
 			</div>
 
-			<h1 style="margin-top: 80px;"><a href="https://www.erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
+			<h1 style="margin-top: 80px;"><a href="https://erode-sengunthar.ac.in/">ERODE SENGUNTHAR<br><span>ENGINEERING COLLEGE </span> <br>
 					<h3>(An Autonomous Institution)</h3>
 				</a></h1><br>
 			<h2 class="logo"><?php echo $sympName.' <span>'.$sympYear; ?></span></h2><br>
@@ -53,14 +55,21 @@ if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['pr
 				$in = $_GET['in'];
 				$up = $_GET['up'];
 				echo "<span id='sucMsg'>Uploaded successfully. $in students registered and $up students updated</span><br>";
-			} else if (isset($_GET['msg']) && $_GET['msg'] == 'udel') {
+			}
+			if (isset($_GET['msg']) && $_GET['msg'] == 'udel') {
 				echo "<span id='sucMsg'>User deleted successfully</span>";
-			} else if (isset($_GET['msg']) && $_GET['msg'] == 'send') {
+			}
+			if (isset($_GET['msg']) && $_GET['msg'] == 'send') {
 				echo "<span id='sucMsg'>Mail sent successfully</span>";
 			}
+			if (isset($_GET['msg']) && $_GET['msg'] == 'mode' && isset($_GET['mode'])) {
+				echo "<span id='sucMsg'>Registration mode changed to {$_GET['mode']}</span>";
+			}
 			?>
+
+			
 			<div class="search">
-				<form id="search">
+				<div id="search">
 					<select name="filterBy" id="filterBy">
 						<option value="-1">Filter By</option>
 						<option value="symp">SYMP ID</option>
@@ -79,6 +88,17 @@ if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['pr
 							}
 						?>
 					</select>
+
+					<form action="onspotRegistration.php" method="POST" id="modeForm">
+						<input type="hidden" name="mode" value="<?php echo $modeOfRegistration;?>">
+						<div class="toggle">
+							<span>MODE : </span>
+							<span>ONLINE</span>
+							<input type="checkbox" id="toggle" style="display:none" name="modeOfRegistration" <?php echo 'value="'.$modeOfRegistration.'" '.$checked; ?>>
+							<label for="toggle"></label>
+							<span>ON-SPOT</span>
+						</div>
+					</div>
 				</form>
 			</div>
 			<form action="../confirmationMail.php" method="post">
@@ -155,6 +175,11 @@ if (isset($_SESSION['EMAIL']) && isset($_SESSION['NAME']) && isset($_SESSION['pr
 
 
 		<script>
+			$("#toggle").on("change", () => {
+				$("#modeForm").submit();
+			});
+
+
 			function dropdown() {
 				div = document.getElementById("myDropdown").style;
 				var dspl = div.display == "none" ? "block" : "none";

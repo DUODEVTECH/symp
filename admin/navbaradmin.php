@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include "../sympDetail.php";
+?>
 <ul>
     <li class="list home" id="home">
         <a href="admin.php">
@@ -23,6 +27,14 @@
             <span class="text">STUDENTS</span>
         </a>
     </li>
+    <?php if($modeOfRegistration == 'ONSPOT'){ ?>
+    <li class="list payment">
+        <a href="paymentList.php">
+            <span class="icon"><i class="fa-solid fa-sm fa-credit-card"></i></span>
+            <span class="text">PAYMENT</span>
+        </a>
+    </li>
+    <?php } ?>
     <li class="list eventList">
         <a href="events.php">
             <span class="icon"><i class="fa-solid fa-sm fa-calendar-check"></i></span>

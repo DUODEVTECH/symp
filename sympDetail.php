@@ -2,6 +2,7 @@
 include "config.php";
 
 $sympDetails = mysqli_fetch_assoc(mysqli_query( $conn, "SELECT * FROM admin"));
+$modeOfRegistration = mysqli_fetch_assoc(mysqli_query($conn, "SELECT DEFAULT(MODE) as MODE FROM users"))['MODE'];
 
 $sympEmail   = $sympDetails['EMAIL'];
 $sympName    = $sympDetails['SYMP_NAME'];
